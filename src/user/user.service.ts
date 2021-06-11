@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IUserDataAccess } from 'src/dataAccess/iuser-data-access';
+import { IUserDataAccess } from 'src/user/user.dataaccess.interface';
 import { User } from './entities/user.entity';
 
-@Injectable()
+//@Injectable()
 export class UserService implements IUserDataAccess {
 
   private _index = 4;

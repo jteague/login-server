@@ -1,22 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { IUserDataAccess } from 'src/user/user.dataaccess.interface';
 import { User } from './entities/user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { UserServiceProvider } from './user.service.provider';
 jest.mock('./user.service');
 
 describe('UserController', () => {
   let controller: UserController;
-  let service: UserService;
+  let service: IUserDataAccess;
   let user: User;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
-      providers: [UserService],
+      providers: [UserServiceProvider]
     }).compile();
 
     controller = module.get<UserController>(UserController);
-    service = module.get<UserService>(UserService);
+    service = module.get<IUserDataAccess>('IUserDataAccess');
   });
 
   it('should be defined', () => {
