@@ -1,9 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, LoggerService } from '@nestjs/common';
 import { IUserDataAccess } from 'src/user/user.dataaccess.interface';
 import { User } from './entities/user.entity';
+import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { exception } from 'console';
 
 //@Injectable()
 export class UserService implements IUserDataAccess {
+
+  constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly log: LoggerService) {
+    this.log.debug('UserService starting...');
+  }
 
   private _index = 4;
 
@@ -30,8 +36,7 @@ export class UserService implements IUserDataAccess {
       this._index++;
       return true;
     } catch(error) {
-      // todo: log the error
-      console.log('Error inserting User: ' + error);
+      this.log.error('Error inserting User: ' + error);
       return false;
     }
   }

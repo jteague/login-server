@@ -5,6 +5,11 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "runtimeExecutable": "nodemon",
+  "nodemonConfig": {
+    "ignore": ["test/*", "docs/*"],
+    "delay": 1500
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -26,6 +31,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^7.6.15",
     "jest-cli": "^26.6.3",
+    "nest-winston": "^1.5.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6"
